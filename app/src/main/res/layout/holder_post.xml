@@ -11,7 +11,7 @@
             type="com.koombea.posts.domain.model.User" />
         <variable
             name="util"
-            type="com.koombea.posts.utils.DateKt" />
+            type="com.koombea.posts.utils.UtilKt" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

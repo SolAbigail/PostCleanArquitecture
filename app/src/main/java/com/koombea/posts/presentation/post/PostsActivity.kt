@@ -12,7 +12,7 @@ import com.koombea.posts.R
 import com.koombea.posts.databinding.ActivityPostsBinding
 import com.koombea.posts.databinding.ItemPhotoBinding
 import com.koombea.posts.presentation.post.DetailAdapter
-import com.koombea.posts.presentation.post.PostsAdapter
+import com.koombea.posts.presentation.post.adapter.PostsAdapter
 import com.koombea.posts.presentation.post.PostsViewModel
 import com.koombea.posts.utils.isNetworkAvailable
 import kotlinx.android.synthetic.main.activity_posts.*
@@ -53,7 +53,6 @@ class PostsActivity() : AppCompatActivity(), DetailAdapter.OnAction{
             swipeRefreshLayout.observe(this@PostsActivity, {
                 activityPostsBinding.swipeRefresh.isRefreshing = false
             })
-
         }
     }
 
@@ -66,11 +65,7 @@ class PostsActivity() : AppCompatActivity(), DetailAdapter.OnAction{
         if (isNetworkAvailable()){
             postsViewModel.getPosts()
         }else {
-            Toast.makeText(
-                this,
-                getString(R.string.no_internet_connection),
-                Toast.LENGTH_SHORT
-            ).show()
+            postsViewModel.getAllPosts()
         }
     }
 
@@ -86,5 +81,6 @@ class PostsActivity() : AppCompatActivity(), DetailAdapter.OnAction{
             .setView(binding.root)
             .show()
     }
+
 }
 

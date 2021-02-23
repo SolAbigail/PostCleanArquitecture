@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.koombea.posts"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -39,6 +39,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -101,7 +102,10 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
-    // Feature module Support
-    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+    // Couchbase
+    implementation "com.couchbase.lite:couchbase-lite-android:$couchbase_version"
+
+    //Piccaso
+    implementation "com.squareup.picasso:picasso:$picasso_version"
 
 }

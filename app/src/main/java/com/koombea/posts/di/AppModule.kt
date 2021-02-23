@@ -6,9 +6,15 @@ import org.koin.dsl.module
 
 val AppModule = module {
 
-    viewModel { PostsViewModel(get()) }
+    viewModel { PostsViewModel(get(), get(), get(), get()) }
 
     single { createGetPostsUseCase(get()) }
 
-    single { createPostRepository(get()) }
+    single { createSavePostsUseCase(get()) }
+
+    single { createGetAllPostsUseCase(get()) }
+
+    single { createIsEmptyUseCase(get() ) }
+
+    single { createPostRepository(get(), get()) }
 }

@@ -1,5 +1,6 @@
 package com.koombea.posts.presentation.adapter
 
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -25,6 +26,11 @@ fun View.bindVisibleImage(url: String?) {
 @BindingAdapter("url")
 fun ImageView.loadUrl(url: String){
     Glide.with(this).load(url).into(this)
+}
+
+@BindingAdapter("imgBackground")
+fun ImageView.loadSrc(url: String){
+    loadSrc(url)
 }
 
 @BindingAdapter("date")

@@ -1,7 +1,8 @@
-package com.koombea.posts.presentation.post
+package com.koombea.posts.presentation.post.adapter
 
 import android.content.Context
-import android.util.Log
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -12,6 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.koombea.posts.R
 import com.koombea.posts.databinding.HolderPostBinding
 import com.koombea.posts.domain.model.User
+import com.koombea.posts.presentation.post.DetailAdapter
+import com.koombea.posts.utils.extratNameUrl
+import com.koombea.posts.utils.saveImgToCache
+import com.squareup.picasso.Picasso
 import kotlin.properties.Delegates
 
 class PostsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
@@ -49,6 +54,7 @@ class PostsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
         fun onBind(user: User) {
             (viewDataBinding as HolderPostBinding).user = user
+            onSaveCahceImages(user.post.pics, viewDataBinding.root.context)
             viewDataBinding.rvPosts.adapter = mAdapter
             viewDataBinding.rvPosts2.adapter = mAdapter2
 
@@ -76,6 +82,20 @@ class PostsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
             mAdapter2?.mPostList =  listPics2
             mAdapter2?.state = true
             mAdapter2?.mOnAction = mOnAction
+        }
+
+        fun onSaveCahceImages(listUrl: List<String>, context: Context){
+            for (url in listUrl){
+                Picasso.get().load(url).into(object : com.squareup.picasso.Target {
+                    override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
+                        saveImgToCache(bitmap!!, extratNameUrl(url), context)
+                    }
+
+                    override fun onPrepareLoad(placeHolderDrawable: Drawable?) {}
+
+                    override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {}
+                })
+            }
         }
     }
 
