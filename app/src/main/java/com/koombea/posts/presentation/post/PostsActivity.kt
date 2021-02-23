@@ -11,7 +11,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.koombea.posts.R
 import com.koombea.posts.databinding.ActivityPostsBinding
 import com.koombea.posts.databinding.ItemPhotoBinding
-import com.koombea.posts.presentation.post.DetailAdapter
+import com.koombea.posts.presentation.post.adapter.DetailAdapter
 import com.koombea.posts.presentation.post.adapter.PostsAdapter
 import com.koombea.posts.presentation.post.PostsViewModel
 import com.koombea.posts.utils.isNetworkAvailable

@@ -1,4 +1,4 @@
-package com.koombea.posts.presentation.post
+package com.koombea.posts.presentation.post.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +11,6 @@ import com.koombea.posts.databinding.Holder2DetailBinding
 import com.koombea.posts.databinding.HolderDetailBinding
 import com.koombea.posts.utils.extratNameUrl
 import com.koombea.posts.utils.getPathFile
-import com.squareup.picasso.Picasso
 import kotlin.properties.Delegates
 
 
@@ -40,8 +39,8 @@ class DetailAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private fun getItem(position: Int): String = mPostList[position]
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if(state)(holder as DetailAdapter.Detail2ViewHolder).onBind(getItem(position))
-        else (holder as DetailAdapter.DetailViewHolder).onBind(getItem(position))
+        if(state)(holder as Detail2ViewHolder).onBind(getItem(position))
+        else (holder as DetailViewHolder).onBind(getItem(position))
     }
 
     override fun getItemCount(): Int = if (mPostList.isNullOrEmpty()) 0 else mPostList.size
@@ -60,7 +59,7 @@ class DetailAdapter(): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private inner class Detail2ViewHolder(private val viewDataBinding: ViewDataBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root) {
         fun onBind(url: String) {
-            (viewDataBinding as Holder2DetailBinding).url = getPathFile(extratNameUrl(url), viewDataBinding.root.context).path
+            (viewDataBinding as Holder2DetailBinding).url = url
             viewDataBinding.ivPhoto.setOnClickListener(View.OnClickListener {
                 mOnAction.onItemClick(url)
             })

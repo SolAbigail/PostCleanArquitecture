@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.koombea.posts.R
 import com.koombea.posts.databinding.HolderPostBinding
 import com.koombea.posts.domain.model.User
-import com.koombea.posts.presentation.post.DetailAdapter
 import com.koombea.posts.utils.extratNameUrl
 import com.koombea.posts.utils.saveImgToCache
 import com.squareup.picasso.Picasso
